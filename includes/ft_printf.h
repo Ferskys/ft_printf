@@ -6,29 +6,22 @@
 /*   By: fsuomins <fsuomins@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 17:12:23 by fsuomins          #+#    #+#             */
-/*   Updated: 2022/10/21 23:27:28 by fsuomins         ###   ########.fr       */
+/*   Updated: 2022/10/27 20:05:54 by fsuomins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
+# include <limits.h>
 # include <stdarg.h>
-# include <stdlib.h>
 # include <unistd.h>
 
-# if defined (__APPLE__)
-#  define PTR_NULL "0x0"
-# elif __linux__
-#  define PTR_NULL "(nil)"
-# endif
+int		ft_printf(const char *fmt, ...) __attribute__((format(printf, 1, 2)));
 
-int		ft_printf(const char *str, ...);
+int		ft_putchar(char c);
+int		ft_putstr(char *s);
+int		ft_putnbr(long long nbr, char *base);
+int		ft_putaddress(unsigned long long nbr, char *base);
 
-void	print_char(va_list arg, int *arg_len);
-void	print_int(va_list arg, int *arg_len);
-void	print_uint(va_list arg, int *arg_len);
-void	print_hexa(va_list arg, int *arg_len, char c);
-void	print_address_hexa(va_list arg, int *arg_len);
-void	print_str(va_list arg, int *arg_len);
 #endif

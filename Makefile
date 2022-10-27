@@ -6,31 +6,36 @@
 #    By: fsuomins <fsuomins@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/18 16:59:54 by fsuomins          #+#    #+#              #
-#    Updated: 2022/10/21 23:48:27 by fsuomins         ###   ########.fr        #
+#    Updated: 2022/10/27 20:31:29 by fsuomins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC = cc
 NAME = libftprintf.a
-CFLAGS = -Wall -Wextra -Werror
-OPTIONS = -c -I.
-SRCS = ft_printf.c utils.c libft/*.c
-OBJ = *.o
+
+FILES = ft_printf.c \
+		utils.c
+
+SRCS = $(addprefix sources/,$(FILES))
+
+OBJS = $(SRCS:.c=.o)
+
+INCLUDES = -I includes
+
+CFLAGS = -Wall -Wextra -Werror $(INCLUDES)
+
+AR = ar -rc
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	ar -crs $(NAME) $(OBJ)
-
-$(OBJ): $(SRC)
-	$(CC) $(CFLAGS) $(OPTIONS) $(SRC)
+$(NAME): $(OBJS)
+	$(AR) $(NAME) $(OBJS)
 
 clean:
-	rm -f $(OBJ)
+	$(RM) $(OBJS)
 
 fclean: clean
-	rm -f $(NAME)
+	$(RM) $(NAME)
 
-re: fclean all	
+re: fclean all
 
-.PHONY: clean fclean all re
+.PHONY: all clean fclean re
