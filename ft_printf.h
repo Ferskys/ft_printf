@@ -5,24 +5,29 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fsuomins <fsuomins@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/18 17:12:23 by fsuomins          #+#    #+#             */
-/*   Updated: 2022/10/27 23:03:26 by fsuomins         ###   ########.fr       */
+/*   Created: 2022/11/01 23:04:32 by fsuomins          #+#    #+#             */
+/*   Updated: 2022/11/02 00:27:13 by fsuomins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include <limits.h>
-# include <stdarg.h>
 # include <unistd.h>
+# include <stdarg.h>
 # include <stdio.h>
+# include <stdlib.h>
 
-int		ft_printf(const char *format, ...) __attribute__((format(printf, 1, 2)));
-
-int		ft_putchar(char c);
-int		ft_putstr(char *s);
-int		ft_putnbr(long long nbr, char *base);
-int		ft_address(unsigned long long nbr, char *base);
+int	ft_putnbru(unsigned int n);
+int	ft_printf(const char *format, ...);
+int	search(char format, va_list arg);
+int	ft_toupper(int ch);
+int	pointer(unsigned long ptr);
+int	dex(unsigned long decimalnum, int i, int j);
+int	dexs(unsigned long decimalnum, int i, int j);
+int	iszero(unsigned long zero);
+int	ft_putnbr(int n);
+int	ft_putstr(char *s);
+int	ft_putchar(char c);
 
 #endif
