@@ -5,38 +5,15 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fsuomins <fsuomins@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/18 17:12:18 by fsuomins          #+#    #+#             */
-/*   Updated: 2022/10/27 20:23:38 by fsuomins         ###   ########.fr       */
+/*   Created: 2022/10/27 21:57:55 by fsuomins          #+#    #+#             */
+/*   Updated: 2022/10/27 22:26:08 by fsuomins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf(const char *format, ...)
-{
-	va_list	ap;
-	int		len;
-	char	*str;
 
-	va_start(ap, format);
-	len = 0;
-	str = NULL;
-	while (*format)
-	{
-		if (*format == '%')
-		{
-			format++;
-			put_format(ap, format, &len, str);
-		}
-		else
-			len += ft_putchar(*format);
-		format++;
-	}
-	va_end(ap);
-	return (len);
-}
-
-static void	put_format(va_list ap, const char *fmt, int *len, char *str)
+static void	put_format(va_list ap, const char *format, int *len, char *str)
 {
 	if (*format == '%')
 		*len += ft_putchar('%');
@@ -63,4 +40,28 @@ static void	put_format(va_list ap, const char *fmt, int *len, char *str)
 		else
 			*len += ft_putstr(str);
 	}
+}
+
+int	ft_printf(const char *format, ...)
+{
+	va_list	ap;
+	int		len;
+	char	*str;
+
+	va_start(ap, format);
+	len = 0;
+	str = NULL;
+	while (*format)
+	{
+		if (*format == '%')
+		{
+			format++;
+			put_format(ap, format, &len, str);
+		}
+		else
+			len += ft_putchar(*format);
+		format++;
+	}
+	va_end(ap);
+	return (len);
 }

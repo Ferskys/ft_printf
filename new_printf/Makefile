@@ -5,35 +5,32 @@
 #                                                     +:+ +:+         +:+      #
 #    By: fsuomins <fsuomins@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/10/18 16:59:54 by fsuomins          #+#    #+#              #
-#    Updated: 2022/10/27 22:16:04 by fsuomins         ###   ########.fr        #
+#    Created: 2022/10/31 23:18:38 by fsuomins          #+#    #+#              #
+#    Updated: 2022/10/31 23:43:09 by fsuomins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
+SRCS = ./ft_printf.c
 
-FILES = ft_printf.c \
-		utils.c
-
-INCLUDEH = .
-OBJS = $(patsubst %.c, %.o, $(SRCS)) #trocando um certo padrão pór outro (.c por .o em todos os arquivos do SRCS)
+INCLUDES = .
+OBJS = $(patsubst %.c, %.o, $(SRCS))
 CFLAGS = -Wall -Wextra -Werror
 
-all : $(NAME)
+all: $(NAME)
 
-$(NAME) : $(OBJS)
-	@ar rcs $(NAME) $(OBJS) 
+$(NAME): $(OBJS)
+	ar rcs $(NAME) $(OBJS)
 
-#o "s" cria um indice para os arquivos, e agiliza o processo de likagem
-$(OBJS) : $(SRCS) libft.h
-	cc $(CFLAGS) -c $(SRCS) -I $(INCLUDEH) 
+$(OBJS): $(SRCS) ./ft_printf.h
+	cc $(CFLAGS) -c $(SRCS) -I $(INCLUDES)
 
-clean : 
-	@rm -f $(OBJS)
+clean:
+	rm -f $(OBJS)
 
-fclean : clean
-	@rm -f $(NAME)
+fclean: clean
+	rm -f $(NAME)
 
-re : fclean all
+re: fclean all
 
 .PHONY: all clean fclean re
