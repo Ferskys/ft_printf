@@ -6,7 +6,7 @@
 /*   By: fsuomins <fsuomins@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 23:56:24 by fsuomins          #+#    #+#             */
-/*   Updated: 2022/11/02 00:14:11 by fsuomins         ###   ########.fr       */
+/*   Updated: 2022/11/07 20:23:08 by fsuomins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,16 +70,5 @@ int	ft_putnbr(int n)
 		ret += ft_putnbr(n / 10);
 		ret += ft_putnbr(n % 10);
 	}
-	return (ret);
-}
-
-int	iszero(unsigned long zero)
-{
-	int	ret;
-
-	if (zero == 0)
-		ret = ft_putchar('0');
-	else
-		ret = ft_putstr("80000000");
 	return (ret);
 }
